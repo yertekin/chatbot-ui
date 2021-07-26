@@ -7,9 +7,16 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+
 
 export default {
   name: 'App',
+  mounted() {
+    axios.get('http://localhost:3000/content').then(
+      (response) => console.log(response.data)
+    )
+  },
   components: {
     HelloWorld
   }
