@@ -8,7 +8,7 @@
         "userID": 2506693,
         "messageDate": "2021-07-26-21-53-53",
         "type": "CONNECT",
-        "payload": "1",
+        "payload": "Selam",
         "uniqueID": "---+++"
       },
       {
@@ -23,11 +23,11 @@
       {
         "id": 63477860,
         "conversationID": 3805362,
-        "isAgent": true,
+        "isAgent": false,
         "userID": 134,
         "messageDate": "2021-07-26-21-53-06",
         "type": "TEXT",
-        "payload": "Yapı Kredi Mobil ile; ATM\u0027ye dokunmadan QR kodla para çekip yatırabilirsiniz. NFC\u0027li cihazınızla mobil ödeme yapabilirsiniz. POS\u0027ta QR kodla ödeme ile kartınızı kullanmadan ödeme yapabilirsiniz. Araçta ödeme ile Opet istasyonlarında aracınızdan inmeden ödeme yapabilirsiniz."
+        "payload": "Akademik takvimi göster."
       },
       {
         "id": 63477859,
@@ -36,26 +36,7 @@
         "userID": 134,
         "messageDate": "2021-07-26-21-53-06",
         "type": "TEXT",
-        "payload": "Sağlığınız bizim için kıymetli! Temassız yaşamamız gereken bu günlerde teknolojilerimizle yanınızdayız."
-      },
-      {
-        "id": 63477858,
-        "conversationID": 3805362,
-        "isAgent": true,
-        "userID": 134,
-        "messageDate": "2021-07-26-21-53-06",
-        "type": "TEXT",
-        "payload": "Merhaba, *Yapı Kredi*\u0027ye hoş geldiniz."
-      },
-      {
-        "id": 63477853,
-        "conversationID": 3805362,
-        "isAgent": false,
-        "userID": 2506693,
-        "messageDate": "2021-07-26-21-53-04",
-        "type": "TEXT",
-        "payload": "selam",
-        "uniqueID": "---+++"
+        "payload": "Aşağıdaki linkten akademik takvime ulaşabilirsiniz."
       }
     ]
   }
