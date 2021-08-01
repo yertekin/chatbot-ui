@@ -3,30 +3,21 @@
     <div id="nav">
       <b-navbar>
         <b-navbar-brand>
-          <img src="./assets/robot.png" width="12%" height="auto">
+          <img src="./assets/robot.png" width="12%" height="auto" />
           SU-Bot
         </b-navbar-brand>
       </b-navbar>
     </div>
     <b-container>
-      <ul>
-        <li v-for="message in messages" :key="message.id">
-            <div class="received" v-if=message.isAgent>
-              <b-card border-variant="info">
-                <b-card-text>{{message.payload}}</b-card-text>
-              </b-card>
-            </div>
-            <div class="sent" v-else>
-              <b-card border-variant="info">
-                <b-card-text>{{message.payload}}</b-card-text>
-              </b-card></div>
-        </li>
-      </ul>
+      <subot-message-container :messageList='messages'></subot-message-container>
     </b-container>
     <footer id="send-message">
       <b-row>
         <b-col cols="9">
-          <b-form-input v-model="text" placeholder="Enter your message"></b-form-input>
+          <b-form-input
+            v-model="text"
+            placeholder="Enter your message"
+          ></b-form-input>
         </b-col>
         <b-col cols="2">
           <b-button variant="outline-primary">
@@ -39,26 +30,28 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+import axios from "axios";
+import MessagesContainer from './components/MessagesContainer.vue'
 
 export default {
-  name: 'App',
+  name: "App",
+  components: {
+    'subot-message-container': MessagesContainer
+  },
   mounted() {
-    axios.get('http://localhost:3000/content').then(
-      (response) => {
-        for(let key in response.data) {
-          this.messages.push(response.data[key])
-        }
+    axios.get("http://localhost:3000/content").then((response) => {
+      for (let key in response.data) {
+        this.messages.push(response.data[key]);
+      }
     });
   },
   data() {
-      return {
-        text: '',
-        messages: []
-      }
-  }    
-}
+    return {
+      text: "",
+      messages: [],
+    };
+  },
+};
 </script>
 
 <style>
@@ -77,10 +70,10 @@ export default {
   background-color: #124b8f;
 }
 .navbar.navbar-expand {
-    justify-content: center;
+  justify-content: center;
 }
 .navbar.navbar-light .navbar-brand {
-    color: white;
+  color: white;
 }
 .container {
   margin-top: 15px;
@@ -99,22 +92,19 @@ html {
   justify-content: center;
 }
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 li {
   padding-bottom: 10px;
-  
 }
 .sent {
   text-align: right;
-  width: 50%;
   margin: 0 auto;
 }
 
 .received {
   text-align: left;
   margin: 0 auto;
-  width: 50%;
 }
 footer {
   padding-left: 15px;
