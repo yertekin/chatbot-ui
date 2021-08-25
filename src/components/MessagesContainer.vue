@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="message in messageList" :key="message.id">
-      <subot-message-item :isAgent="message.isAgent" :message="message.payload"></subot-message-item>
+      <subot-message-item :isAgent="message.isAgent" :message="message.message"></subot-message-item>
     </li>
   </ul>
 </template>

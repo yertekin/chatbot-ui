@@ -9,18 +9,24 @@
       </b-navbar>
     </div>
     <b-container>
-      <subot-message-container :messageList='messages'></subot-message-container>
+      <subot-message-container
+        :messageList="messages"
+      ></subot-message-container>
     </b-container>
     <footer id="send-message">
       <b-row>
         <b-col cols="9">
-          <b-form-input
-            v-model="text"
-            placeholder="Enter your message"
-          ></b-form-input>
+          <b-form-input v-model="text" placeholder="Enter your message">
+          </b-form-input>
         </b-col>
         <b-col cols="2">
-          <b-button variant="outline-primary">
+          <b-button
+            variant="outline-primary"
+            v-on:click="
+              addQuestion();
+              askQuestion();
+            "
+          >
             <b-icon icon="arrow-right-circle-fill"></b-icon>
           </b-button>
         </b-col>
@@ -31,24 +37,47 @@
 
 <script>
 import axios from "axios";
-import MessagesContainer from './components/MessagesContainer.vue'
+import MessagesContainer from "./components/MessagesContainer.vue";
 
 export default {
   name: "App",
   components: {
-    'subot-message-container': MessagesContainer
+    "subot-message-container": MessagesContainer,
   },
-  mounted() {
-    axios.get("http://localhost:3000/content").then((response) => {
+  async created() {
+    if (localStorage.getItem("sessionId") === null) {
+      let response = await axios.post(
+        "http://localhost:8080/create", {ping: "pong"}
+      );
+      this.sessionId = response.data.id;
+      localStorage.setItem("sessionId", this.sessionId);
+    } else {
+      this.sessionId = localStorage.getItem("sessionId");
+    }
+  },
+  methods: {
+    async askQuestion() {
+      const question = { sessionId: this.sessionId, message: this.text };
+      const response = await axios.post(
+        "http://localhost:8080/ask",
+        question
+      );
       for (let key in response.data) {
         this.messages.push(response.data[key]);
       }
-    });
+    },
+    addQuestion() {
+      let question = { message: this.text, isAgent: false };
+      this.messages.push(question);
+      this.$forceUpdate();
+      console.log(this.messages);
+    },
   },
   data() {
     return {
       text: "",
       messages: [],
+      sessionId: 0,
     };
   },
 };
