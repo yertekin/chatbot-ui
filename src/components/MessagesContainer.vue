@@ -1,21 +1,33 @@
 <template>
-  <ul>
+  <ul id="paddingless">
     <li v-for="message in messageList" :key="message.id">
-      <subot-message-item :isAgent="message.isAgent" :message="message.message"></subot-message-item>
+      <subot-message-item
+        :agent="message.agent"
+        :message="message.message"
+      ></subot-message-item>
     </li>
   </ul>
 </template>
 
 <script>
-import MessageItem from './MessageItem.vue'
+import MessageItem from "./MessageItem.vue";
 
 export default {
-    components: {
-        'subot-message-item': MessageItem
+  components: {
+    "subot-message-item": MessageItem,
+  },
+  props: ["messageList"],
+  methods: {
+    updateScroll() {
+      var element = document.getElementsByTagName("li");
+      element.scrollTop = element.scrollHeight;
     },
-    props: ['messageList'],
+  },
 };
 </script>
 
 <style>
+#paddingless {
+  padding-left: 0;
+}
 </style>
